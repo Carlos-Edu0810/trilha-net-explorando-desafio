@@ -1,21 +1,57 @@
-# DIO - Trilha .NET - Explorando a linguagem C#
-www.dio.me
+# 🏨 Projeto de Sistema de Hospedagem em C#
 
-## Desafio de projeto
-Para este desafio, você precisará usar seus conhecimentos adquiridos no módulo de explorando a linguagem C#, da trilha .NET da DIO.
+Este projeto é um desafio prático proposto pela [DIO - Digital Innovation One](https://www.dio.me) no curso **Trilha .NET - Explorando a linguagem C#**. O objetivo é aplicar os conceitos aprendidos de orientação a objetos e estruturação de código em C#, desenvolvendo um sistema simples de hospedagem de hotel.
 
-## Contexto
-Você foi contratado para construir um sistema de hospedagem, que será usado para realizar uma reserva em um hotel. Você precisará usar a classe Pessoa, que representa o hóspede, a classe Suíte, e a classe Reserva, que fará um relacionamento entre ambos.
+## 📚 Desafio Proposto
 
-O seu programa deverá cálcular corretamente os valores dos métodos da classe Reserva, que precisará trazer a quantidade de hóspedes e o valor da diária, concedendo um desconto de 10% para caso a reserva seja para um período maior que 10 dias.
+Você foi contratado para construir um sistema de hospedagem, que será usado para realizar reservas em um hotel. O sistema deve conter as seguintes classes:
 
-## Regras e validações
-1. Não deve ser possível realizar uma reserva de uma suíte com capacidade menor do que a quantidade de hóspedes. Exemplo: Se é uma suíte capaz de hospedar 2 pessoas, então ao passar 3 hóspedes deverá retornar uma exception.
-2. O método ObterQuantidadeHospedes da classe Reserva deverá retornar a quantidade total de hóspedes, enquanto que o método CalcularValorDiaria deverá retornar o valor da diária (Dias reservados x valor da diária).
-3. Caso seja feita uma reserva igual ou maior que 10 dias, deverá ser concedido um desconto de 10% no valor da diária.
+- `Pessoa`: Representa um hóspede.
+- `Suite`: Representa o tipo de suíte do hotel.
+- `Reserva`: Responsável por gerenciar a reserva, incluindo os hóspedes e a suíte.
 
+## 🎯 Regras de Negócio e Funcionalidades
 
-![Diagrama de classe estacionamento](diagrama_classe_hotel.png)
+- ✅ **Validação de Capacidade**: Não deve ser possível realizar uma reserva com mais hóspedes do que a capacidade da suíte. Se isso ocorrer, o sistema deve lançar uma exceção.
+- ✅ **Cálculo de Valor da Diária**: O valor da diária é calculado com base na multiplicação dos dias reservados pelo valor da diária da suíte.
+- ✅ **Desconto Progressivo**: Se a reserva for para 10 dias ou mais, deve ser aplicado um desconto de 10% no valor total da hospedagem.
+- ✅ **Quantidade de Hóspedes**: O sistema deve retornar corretamente a quantidade total de hóspedes cadastrados na reserva.
 
-## Solução
-O código está pela metade, e você deverá dar continuidade obedecendo as regras descritas acima, para que no final, tenhamos um programa funcional. Procure pela palavra comentada "TODO" no código, em seguida, implemente conforme as regras acima.
+## 🧪 Exemplo de Uso
+
+```csharp
+// Cria os hóspedes
+List<Pessoa> hospedes = new List<Pessoa>
+{
+    new Pessoa(nome: "Hóspede 1"),
+    new Pessoa(nome: "Hóspede 2")
+};
+
+// Cria a suíte
+Suite suite = new Suite(tipoSuite: "Premium", capacidade: 2, valorDiaria: 30);
+
+// Cria a reserva
+Reserva reserva = new Reserva(diasReservados: 10);
+reserva.CadastrarSuite(suite);
+reserva.CadastrarHospedes(hospedes);
+
+// Exibe informações
+Console.WriteLine($"Hóspedes: {reserva.ObterQuantidadeHospedes()}");
+Console.WriteLine($"Valor diária: {reserva.CalcularValorDiaria()}");
+```
+
+## 📦 Estrutura do Projeto
+
+- `Pessoa.cs` – Define o modelo de hóspede.
+- `Suite.cs` – Define o modelo de suíte, com tipo, capacidade e valor da diária.
+- `Reserva.cs` – Lida com a lógica de negócios: cadastro de hóspedes e suítes, cálculo de valores e aplicação de regras.
+
+## 🚀 Tecnologias Utilizadas
+
+- C#
+- .NET 6 ou superior
+- Console Application
+
+## 📌 Observações
+
+Este projeto tem fins educacionais e foi desenvolvido como parte de um desafio da DIO para praticar os conceitos fundamentais de C# e programação orientada a objetos.
